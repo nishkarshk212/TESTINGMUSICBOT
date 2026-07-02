@@ -246,12 +246,13 @@ async def _ytdlp_download(link: str, media_type: str) -> str | None:
     try:
         if media_type == "video":
             ydl_opts = {
-                "format":           "bestvideo[height<=720]+bestaudio/best[height<=720]",
+                "format":           "bestvideo[height<=720]+bestaudio/best[height<=720]/best",
                 "outtmpl":          file_path,
                 "quiet":            True,
                 "no_warnings":      True,
                 "cookiefile":       cookie,
                 "merge_output_format": "mp4",
+                "remote_components": "ejs:github",
             }
         else:
             ydl_opts = {
@@ -265,6 +266,7 @@ async def _ytdlp_download(link: str, media_type: str) -> str | None:
                     "preferredcodec": "mp3",
                     "preferredquality": "192",
                 }],
+                "remote_components": "ejs:github",
             }
 
         loop = asyncio.get_event_loop()
