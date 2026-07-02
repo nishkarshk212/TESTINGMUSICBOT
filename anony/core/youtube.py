@@ -37,9 +37,9 @@ DOWNLOAD_DIR    = "downloads"
 
 # ── Cookie helper ─────────────────────────────────────────────────────────────
 def cookie_txt_file() -> str | None:
-    """Return a random cookie .txt file path from the cookies/ folder."""
+    """Return a random cookie .txt file path from the anony/cookies/ folder."""
     try:
-        folder    = os.path.join(os.getcwd(), "cookies")
+        folder    = os.path.join(os.path.dirname(__file__), "..", "cookies")
         txt_files = glob.glob(os.path.join(folder, "*.txt"))
         if not txt_files:
             return None
@@ -47,7 +47,7 @@ def cookie_txt_file() -> str | None:
         log_file = os.path.join(folder, "logs.csv")
         with open(log_file, "a") as f:
             f.write(f"Chosen: {chosen}\n")
-        return f"cookies/{os.path.basename(chosen)}"
+        return chosen
     except Exception:
         return None
 
