@@ -267,6 +267,7 @@ async def _ytdlp_download(link: str, media_type: str) -> str | None:
                     "preferredquality": "192",
                 }],
                 "remote_components": "ejs:github",
+                "format_sort": ["size"],
             }
 
         loop = asyncio.get_event_loop()
